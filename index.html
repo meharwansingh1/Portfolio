@@ -52,7 +52,7 @@
         .download-cv {
             font-size: 1.2rem;
             background: none;
-            border:none;
+            border: none;
             padding: 0.5rem 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -272,6 +272,18 @@
         .icon:hover {
             transform: scale(1.1);
             box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            transition: opacity 0.3s;
         }
 
         .timeline {
@@ -628,8 +640,8 @@
     <div class="container">
         <header>
             <div class="logo">MS</div>
-            <button class="download-cv"><a href="images/MeharwanSingh.pdf"> DOWNLOAD CV <i class="fa-solid fa-arrow-down-long"
-                    style="color: #ffffff;"></i></a></button>
+            <button class="download-cv"><a href="images/MeharwanSingh.pdf"> DOWNLOAD CV <i
+                        class="fa-solid fa-arrow-down-long" style="color: #ffffff;"></i></a></button>
         </header>
 
         <main>
@@ -693,8 +705,7 @@
                             <div class="icon"><img src="images/html.png" alt="HTML" width="40" height="40"></div>
                             <div class="icon"><img src="images/css.png" alt="CSS" width="40" height="40"></div>
                             <div class="icon"><img src="images/js.png" alt="JavaScript" width="40" height="40"></div>
-                            <div class="icon"><img src="images/bootstrap.png" alt="Bootstrap" width="45" height="40">
-                            </div>
+                            <div class="icon"><img src="images/bootstrap.png" alt="Bootstrap" width="45" height="40"></div>
                             <div class="icon"><img src="images/jquery.png" alt="jQuery" width="40" height="40"></div>
                             <div class="icon"><img src="images/python.png" alt="Python" width="40" height="40"></div>
                             <div class="icon"><img src="images/reactjs.png" alt="React.js" width="40" height="40"></div>
@@ -703,11 +714,11 @@
                     <div class="tools">
                         <h2>Tools</h2>
                         <div class="tool-icons" id="toolIcons">
-                            <div class="icon"><img src="images/ps.png" alt="Photoshop" width="40" height="40"></div>
-                            <div class="icon"><img src="images/ai.png" alt="Illustrator" width="40" height="40"></div>
-                            <div class="icon"><img src="images/id.png" alt="InDesign" width="40" height="40"></div>
-                            <div class="icon"><img src="images/pr.png" alt="Premiere Pro" width="40" height="40"></div>
-                            <div class="icon"><img src="images/ae.png" alt="After Effects" width="40" height="40"></div>
+                            <div class="icon"><img src="images/ps.png" alt="Adobe Photoshop" width="40" height="40"></div>
+                            <div class="icon"><img src="images/ai.png" alt="Adobe Illustrator" width="40" height="40"></div>
+                            <div class="icon"><img src="images/id.png" alt="Adobe InDesign" width="40" height="40"></div>
+                            <div class="icon"><img src="images/pr.png" alt="Adobe Premiere Pro" width="40" height="40"></div>
+                            <div class="icon"><img src="images/ae.png" alt="Adobe After Effects" width="40" height="40"></div>
                             <div class="icon"><img src="images/xd.png" alt="Adobe XD" width="40" height="40"></div>
                             <div class="icon"><img src="images/capcut.png" alt="CapCut" width="40" height="40"></div>
                             <div class="icon"><img src="images/figma.png" alt="Figma" width="40" height="40"></div>
@@ -837,12 +848,13 @@
                         </a>
                         <a href="https://www.behance.net/meharramgarh1a" target="_blank" rel="noopener noreferrer"
                             aria-label="Behance">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M3.54 11.47h3.8a3.14 3.14 0 1 0 0-6.29h-3.8zM3.54 12.54h3.87a3.49 3.49 0 1 1 0 6.97H3.54zM21 9.25h-5.68v1.5h5.68zM15.46 16.54a2.21 2.21 0 0 0 2.29 1.9c1.79 0 2.03-1.21 2.03-1.84H21c0 2.46-1.43 3.75-3.52 3.75s-3.48-1.45-3.48-3.49c0-2.04 1.46-3.49 3.52-3.49 1.57 0 3.48 1.06 3.48 3.24H17.6a2.05 2.05 0 0 0-2.14-1.92 2.11 2.11 0 0 0-2 1.84z">
-                            </path>
-                        </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M3.54 11.47h3.8a3.14 3.14 0 1 0 0-6.29h-3.8zM3.54 12.54h3.87a3.49 3.49 0 1 1 0 6.97H3.54zM21 9.25h-5.68v1.5h5.68zM15.46 16.54a2.21 2.21 0 0 0 2.29 1.9c1.79 0 2.03-1.21 2.03-1.84H21c0 2.46-1.43 3.75-3.52 3.75s-3.48-1.45-3.48-3.49c0-2.04 1.46-3.49 3.52-3.49 1.57 0 3.48 1.06 3.48 3.24H17.6a2.05 2.05 0 0 0-2.14-1.92 2.11 2.11 0 0 0-2 1.84z">
+                                </path>
+                            </svg>
                         </a>
                         <a href="mailto:meharwansinghhh@gmail.com" aria-label="Email">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -873,7 +885,7 @@
             }
         });
 
-        // Add hover effect to show icon names
+        // Hover Skills & Tools
         const allIcons = document.querySelectorAll('.icon');
         allIcons.forEach(icon => {
             icon.addEventListener('mouseenter', (e) => {
@@ -972,9 +984,11 @@
                 return re.test(String(email).toLowerCase());
             }
 
-            // Set current year in footer
+            // Current Year
             document.getElementById('currentYear').textContent = new Date().getFullYear();
         });
+
+
 
     </script>
     <script src="https://kit.fontawesome.com/0d2c430efa.js" crossorigin="anonymous"></script>
