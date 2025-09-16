@@ -4,13 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeharwanSingh</title>
+    <title>Meharwan Singh | Full-Stack Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-color: #111;
             --text-color: #fff;
             --accent-color: #00ffff;
+            --accent-color-2: #ff00ff;
             --glow-color: rgba(0, 255, 255, 0.3);
+            --gradient: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
         }
 
         * {
@@ -20,7 +25,7 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
             background: #000000;
             color: #ffffff;
             min-height: 100vh;
@@ -28,12 +33,23 @@
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Canvas for particles */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
         .container {
             width: 1192px;
             max-width: 100%;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
         header {
@@ -47,29 +63,68 @@
         .logo {
             font-size: 2rem;
             font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
         }
 
         .download-cv {
             font-size: 1.2rem;
-            background: none;
+            background: var(--gradient);
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            border-radius: 50px;
+            color: #000;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
         }
 
         .download-cv a {
-            color: #ffffff;
+            color: #000;
             text-decoration: none;
+            z-index: 2;
+            position: relative;
         }
 
-        .fa-solid {
-            margin-left: 5px;
+        .download-cv::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .download-cv:hover::before {
+            left: 100%;
         }
 
         .download-cv:hover {
-            background: #313131;
-            border-radius: 0.5em;
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
         }
 
         main {
@@ -136,10 +191,38 @@
             color: #ffffff;
             text-decoration: none;
             font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            z-index: -1;
+            opacity: 0;
+            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #b7b2b2;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .social-links a:hover::before {
+            opacity: 1;
         }
 
         .scroll-indicator {
@@ -149,6 +232,38 @@
             flex-direction: column;
             align-items: center;
             font-size: 1.1rem;
+            z-index: 100;
+            color: var(--accent-color);
+        }
+
+        .scroll-line {
+            height: 50px;
+            width: 2px;
+            background: var(--accent-color);
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--gradient);
+            animation: scrollLine 2s infinite;
+        }
+
+        @keyframes scrollLine {
+            0% {
+                top: -20px;
+            }
+
+            100% {
+                top: 100%;
+            }
         }
 
         @keyframes fadeInUp {
@@ -245,7 +360,10 @@
         }
 
         .highlight {
-            color: var(--accent-color);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             font-weight: 700;
         }
 
@@ -267,11 +385,42 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 0;
+        }
+
+        .icon img {
+            z-index: 1;
+            transition: all 0.3s ease;
         }
 
         .icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .icon:hover::before {
+            opacity: 0.2;
+        }
+
+        .icon:hover img {
             transform: scale(1.1);
-            box-shadow: 0 0 15px var(--glow-color);
         }
 
         .tooltip {
@@ -298,14 +447,21 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background-color: var(--accent-color);
+            background: var(--gradient);
         }
 
         .experience-item {
             position: relative;
             margin-bottom: 2rem;
-            padding-bottom: 2rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
         }
 
         .experience-item::before {
@@ -315,14 +471,20 @@
             top: 0;
             width: 1rem;
             height: 1rem;
-            background-color: var(--accent-color);
+            background: var(--gradient);
             border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-color);
         }
 
         .date {
             font-size: 0.9rem;
-            color: var(--accent-color);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-bottom: 0.5rem;
+            font-weight: 600;
+            display: block;
         }
 
         .tags {
@@ -383,68 +545,409 @@
 
 
         .projects {
-            height: auto;
-            padding-top: 50px;
-            margin-bottom: 2rem;
-        }
+        height: auto;
+        padding: 100px 0;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .projects h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards;
-        }
+    .projects::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
+        z-index: -1;
+    }
 
+    .projects h2 {
+        text-align: center;
+        margin-bottom: 60px;
+        font-size: 3rem;
+        font-weight: 700;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        position: relative;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s forwards 0.3s;
+    }
+
+    .projects h2::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: var(--gradient);
+        border-radius: 2px;
+    }
+
+    .project-flex {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .project-card {
+        background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+        width: 100%;
+        max-width: 540px;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1s forwards;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        isolation: isolate;
+    }
+
+    .project-card:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .project-card:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .project-card:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    .project-card:nth-child(4) {
+        animation-delay: 0.8s;
+    }
+
+    .project-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient);
+        opacity: 0;
+        transition: all 0.5s ease;
+        z-index: 1;
+    }
+
+    .project-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0, 255, 255, 0.2);
+    }
+
+    .project-card:hover::before {
+        opacity: 0.1;
+    }
+
+    .project-image-container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+    }
+
+    .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transform-origin: center;
+    }
+
+    .project-card:hover .project-image {
+        transform: scale(1.15);
+        filter: brightness(1.1) contrast(1.1);
+    }
+
+    .project-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+        opacity: 0;
+        transition: all 0.5s ease;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding: 20px;
+    }
+
+    .project-card:hover .project-overlay {
+        opacity: 1;
+    }
+
+    .project-tech-stack {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+
+    .tech-tag {
+        background: rgba(0, 255, 255, 0.15);
+        color: var(--accent-color);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    .project-info {
+        padding: 25px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .project-info h3 {
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease;
+    }
+
+    .project-card:hover .project-info h3 {
+        transform: translateX(5px);
+    }
+
+    .project-info p {
+        color: #ccc;
+        margin-bottom: 20px;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .project-link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gradient);
+        transition: width 0.3s ease;
+    }
+
+    .project-link:hover {
+        gap: 12px;
+    }
+
+    .project-link:hover::after {
+        width: 100%;
+    }
+
+    /* Glow effect on hover */
+    .project-card::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: var(--gradient);
+        z-index: -1;
+        border-radius: 18px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        filter: blur(15px);
+    }
+
+    .project-card:hover::after {
+        opacity: 0.6;
+    }
+
+    /* Loading animation for images */
+    .project-image {
+        background: linear-gradient(90deg, #151515 0%, #1e1e1e 50%, #151515 100%);
+        background-size: 200% 200%;
+        animation: loadingAnimation 2s infinite;
+    }
+
+    @keyframes loadingAnimation {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+
+    /* Animation for tech tags */
+    .tech-tag {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s ease;
+    }
+
+    .project-card:hover .tech-tag {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .tech-tag:nth-child(1) { transition-delay: 0.1s; }
+    .tech-tag:nth-child(2) { transition-delay: 0.2s; }
+    .tech-tag:nth-child(3) { transition-delay: 0.3s; }
+    .tech-tag:nth-child(4) { transition-delay: 0.4s; }
+
+    /* RESPONSIVE DESIGN UPDATES */
+    
+    /* Large screens (1200px and above) - 2 cards per row */
+    @media (min-width: 1200px) {
         .project-flex {
-            display: flex;
-            justify-content: space-evenly;
-            gap: 30px;
+            max-width: 1140px;
         }
-
+        
         .project-card {
-            background-color: #111111;
-            width: 500px;
-            margin-top: 50px;
-            border-radius: 5px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards;
+            flex: 0 0 calc(50% - 20px);
+            max-width: calc(50% - 20px);
         }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px var(--accent-color);
+    }
+    
+    /* Standard laptops (992px to 1199px) - 2 cards per row */
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .project-flex {
+            max-width: 960px;
         }
-
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        
+        .project-card {
+            flex: 0 0 calc(50% - 20px);
+            max-width: calc(50% - 20px);
         }
-
+        
+        .project-image-container {
+            height: 280px;
+        }
+    }
+    
+    /* Tablets and small laptops (768px to 991px) - 2 cards per row */
+    @media (min-width: 768px) and (max-width: 991px) {
+        .project-flex {
+            max-width: 720px;
+        }
+        
+        .project-card {
+            flex: 0 0 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+        
+        .project-image-container {
+            height: 250px;
+        }
+        
         .project-info {
             padding: 20px;
         }
-
+        
         .project-info h3 {
-            margin-bottom: 10px;
-            color: var(--accent-color);
+            font-size: 1.3rem;
         }
-
-        @media (max-width: 768px) {
-            .project-flex {
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .project-card {
-                width: 350px;
-            }
+    }
+    
+    /* Small tablets (577px to 767px) - 1 card per row */
+    @media (min-width: 577px) and (max-width: 767px) {
+        .project-flex {
+            max-width: 540px;
         }
+        
+        .project-card {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        
+        .project-image-container {
+            height: 280px;
+        }
+    }
+    
+    /* Mobile devices (up to 576px) - 1 card per row */
+    @media (max-width: 576px) {
+        .projects {
+            padding: 60px 0;
+        }
+        
+        .projects h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+        }
+        
+        .project-flex {
+            gap: 30px;
+            padding: 0 15px;
+        }
+        
+        .project-card {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        
+        .project-image-container {
+            height: 220px;
+        }
+        
+        .project-info {
+            padding: 20px;
+        }
+        
+        .project-info h3 {
+            font-size: 1.3rem;
+        }
+        
+        .project-info p {
+            font-size: 0.9rem;
+        }
+        
+        .tech-tag {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+        }
+    }
+
+    /* Extra large screens (1400px and above) */
+    @media (min-width: 1400px) {
+        .project-flex {
+            max-width: 1320px;
+        }
+        
+        .project-card {
+            flex: 0 0 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+        
+        .project-image-container {
+            height: 320px;
+        }
+    }
 
         #contact {
             display: flex;
@@ -455,13 +958,27 @@
             padding: 200px 0;
         }
 
-
         .container-2 {
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
             width: 100%;
             max-width: 400px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container-2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
 
         .h22 {
@@ -470,6 +987,10 @@
             font-size: 2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .form-group {
@@ -485,18 +1006,23 @@
             color: #fff;
             background-color: transparent;
             border: none;
-            border-bottom: 1px solid #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             outline: none;
             transition: border-color 0.3s;
         }
 
+        input:focus,
+        textarea:focus {
+            border-bottom-color: var(--accent-color);
+        }
+
         label {
             position: absolute;
-            top: 0;
+            top: 10px;
             left: 0;
             padding: 10px 0;
             font-size: 1rem;
-            color: #fff;
+            color: rgba(255, 255, 255, 0.7);
             pointer-events: none;
             transition: 0.3s;
         }
@@ -507,30 +1033,44 @@
         textarea:valid~label {
             top: -20px;
             font-size: 0.8rem;
-            color: #03e9f4;
-        }
-
-        input:focus,
-        textarea:focus {
-            border-bottom-color: #03e9f4;
+            color: var(--accent-color);
         }
 
         .btn {
-            background-color: transparent;
-            border: 2px solid #03e9f4;
-            color: #03e9f4;
-            padding: 10px 20px;
+            background: var(--gradient);
+            border: none;
+            color: #000;
+            padding: 12px 20px;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 2px;
             width: 100%;
+            font-weight: 600;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            background-color: #03e9f4;
-            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
         }
 
         .hidden {
@@ -568,6 +1108,20 @@
         .social-linkss a {
             color: white;
             text-decoration: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-linkss a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
         }
 
         .social-linkss svg {
@@ -577,7 +1131,7 @@
         }
 
         .social-linkss a:hover svg {
-            color: #9ca3af;
+            color: #000;
         }
 
         .error-message {
@@ -586,10 +1140,54 @@
             margin-top: 0.25rem;
         }
 
-        @media (max-width: 768px) {
-            .project-card {
+
+        @media (max-width: 1200px) {
+            .container {
                 width: 100%;
-                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 1085px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .title {
+                font-size: 3rem;
+            }
+
+            .content-left {
+                flex: none;
+                margin-top: 150px;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .project-flex {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .project-card {
+                width: 350px;
+            }
+
+            .footer-content {
+                flex-direction: column;
             }
         }
 
@@ -611,7 +1209,6 @@
                 width: 90%;
                 margin: 0 auto;
             }
-
         }
 
         @media (max-width: 768px) {
@@ -633,31 +1230,376 @@
                 justify-content: center;
             }
         }
+
+        /* Revolutionary Client Showcase Without Overlap */
+        .clients-section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+
+        .clients-heading {
+            text-align: center;
+            margin-bottom: 80px;
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+
+        .clients-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .magnetic-grid {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+            margin: 0 auto;
+            overflow: visible;
+        }
+
+        .grid-cell {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .client-orb {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .client-orb::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            z-index: -1;
+        }
+
+        .client-orb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            z-index: 10;
+        }
+
+        .client-orb:hover::before {
+            opacity: 0.1;
+        }
+
+        .client-logo {
+            max-width: 70%;
+            max-height: 70%;
+            filter: grayscale(100%) brightness(1.5);
+            opacity: 0.8;
+            transition: all 0.6s ease;
+        }
+
+        .client-orb:hover .client-logo {
+            filter: grayscale(0%) brightness(1.2);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            transform-origin: 0 50%;
+            z-index: 1;
+            opacity: 0.2;
+            transition: opacity 0.6s ease;
+        }
+
+        .grid-cell:hover ~ .connection-line {
+            opacity: 0.7;
+            background: linear-gradient(90deg, transparent, var(--accent-color-2), var(--accent-color), transparent);
+        }
+
+        .client-info-panel {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            z-index: 20;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .client-info-panel.active {
+            opacity: 1;
+            visibility: visible;
+            bottom: 40px;
+        }
+
+        .client-info-panel::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: inherit;
+            clip-path: polygon(0 0, 100% 0, 50% 50%);
+        }
+
+        .client-info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .client-info-logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            filter: grayscale(0%);
+        }
+
+        .client-info-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .client-info-project {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .client-info-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #aaa;
+        }
+
+        .close-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-info:hover {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .magnetic-grid {
+                height: 500px;
+            }
+            
+            .grid-cell {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .client-orb {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .magnetic-grid {
+                height: 400px;
+            }
+            
+            .grid-cell {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .client-orb {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .clients-section {
+                padding: 80px 0;
+            }
+            
+            .clients-heading {
+                font-size: 2.2rem;
+                margin-bottom: 60px;
+            }
+            
+            .magnetic-grid {
+                height: 300px;
+            }
+            
+            .grid-cell {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .client-orb {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .client-info-panel {
+                width: 90%;
+                padding: 15px;
+            }
+            
+            .client-info-name {
+                font-size: 1.2rem;
+            }
+            
+            .client-info-project {
+                font-size: 0.9rem;
+            }
+            
+            .client-info-description {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 568px) {
+            .magnetic-grid {
+                height: 250px;
+            }
+            
+            .grid-cell {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .client-orb {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .client-info-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .client-info-logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+
+         /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+            border: none;
+            font-size: 1.5rem;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5);
+        }
     </style>
 </head>
 
 <body>
+    <div id="particles-js"></div>
     <div class="container">
         <header>
             <div class="logo">MS</div>
             <button class="download-cv"><a href="images/MeharwanSingh.pdf"> DOWNLOAD CV <i
-                        class="fa-solid fa-arrow-down-long" style="color: #ffffff;"></i></a></button>
+                        class="fa-solid fa-arrow-down-long"></i></a></button>
         </header>
 
         <main>
             <div class="content-left">
-                <h1 class="title">UI/UX<br>DESIGNER<span class="highlight">.</span></h1>
+                <h1 class="title">Full-Stack<br>DESIGNER<span class="highlight">.</span></h1>
             </div>
             <div class="content-right">
                 <div class="name">Meharwan Singh</div>
-                <p class="description">"Designing Intuitive Interfaces that Elevate User Journeys and Inspire
-                    Innovation"</p>
+                <p class="description">"Crafting Seamless Experiences that Blend Design and Motion, Empowering Brands
+                    through Intuitive UI/UX, Striking Visuals, and Engaging Video Stories."</p>
                 <div class="social-links">
-                    <a href="https://github.com/meharwansingh1" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <a href="https://www.behance.net/MeharwanSinghh" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                d="M3.54 11.47h3.8a3.14 3.14 0 1 0 0-6.29h-3.8zM3.54 12.54h3.87a3.49 3.49 0 1 1 0 6.97H3.54zM21 9.25h-5.68v1.5h5.68zM15.46 16.54a2.21 2.21 0 0 0 2.29 1.9c1.79 0 2.03-1.21 2.03-1.84H21c0 2.46-1.43 3.75-3.52 3.75s-3.48-1.45-3.48-3.49c0-2.04 1.46-3.49 3.52-3.49 1.57 0 3.48 1.06 3.48 3.24H17.6a2.05 2.05 0 0 0-2.14-1.92 2.11 2.11 0 0 0-2 1.84z">
                             </path>
                         </svg>
                     </a>
@@ -669,14 +1611,6 @@
                             </path>
                             <rect x="2" y="9" width="4" height="12"></rect>
                             <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                    <a href="https://www.behance.net/MeharwanSinghh" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M3.54 11.47h3.8a3.14 3.14 0 1 0 0-6.29h-3.8zM3.54 12.54h3.87a3.49 3.49 0 1 1 0 6.97H3.54zM21 9.25h-5.68v1.5h5.68zM15.46 16.54a2.21 2.21 0 0 0 2.29 1.9c1.79 0 2.03-1.21 2.03-1.84H21c0 2.46-1.43 3.75-3.52 3.75s-3.48-1.45-3.48-3.49c0-2.04 1.46-3.49 3.52-3.49 1.57 0 3.48 1.06 3.48 3.24H17.6a2.05 2.05 0 0 0-2.14-1.92 2.11 2.11 0 0 0-2 1.84z">
-                            </path>
                         </svg>
                     </a>
                 </div>
@@ -694,10 +1628,9 @@
                 <div class="left-column">
                     <h1>About Me<span class="accent-dot">.</span></h1>
                     <p class="description-1">
-                        I design visually appealing <span class="highlight">websites, user-friendly interfaces, and
-                            graphics</span>, focusing on
-                        responsive layouts, brand identity, and performance optimization while staying current with
-                        design trends.
+                        I create visually engaging <span class="highlight">UI/UX Designs, Motion Graphics, Graphic
+                            Visuals, and Video Content</span>, focusing on intuitive experiences, brand identity, and
+                        storytelling while staying aligned with modern design trends.
                     </p>
                     <div class="skills">
                         <h2>Skills</h2>
@@ -705,20 +1638,23 @@
                             <div class="icon"><img src="images/html.png" alt="HTML" width="40" height="40"></div>
                             <div class="icon"><img src="images/css.png" alt="CSS" width="40" height="40"></div>
                             <div class="icon"><img src="images/js.png" alt="JavaScript" width="40" height="40"></div>
-                            <div class="icon"><img src="images/bootstrap.png" alt="Bootstrap" width="45" height="40"></div>
-                            <div class="icon"><img src="images/jquery.png" alt="jQuery" width="40" height="40"></div>
-                            <div class="icon"><img src="images/python.png" alt="Python" width="40" height="40"></div>
-                            <div class="icon"><img src="images/reactjs.png" alt="React.js" width="40" height="40"></div>
+                            <div class="icon"><img src="images/bootstrap.png" alt="Bootstrap" width="45" height="40">
+                            </div>
                         </div>
                     </div>
                     <div class="tools">
                         <h2>Tools</h2>
                         <div class="tool-icons" id="toolIcons">
-                            <div class="icon"><img src="images/ps.png" alt="Adobe Photoshop" width="40" height="40"></div>
-                            <div class="icon"><img src="images/ai.png" alt="Adobe Illustrator" width="40" height="40"></div>
-                            <div class="icon"><img src="images/id.png" alt="Adobe InDesign" width="40" height="40"></div>
-                            <div class="icon"><img src="images/pr.png" alt="Adobe Premiere Pro" width="40" height="40"></div>
-                            <div class="icon"><img src="images/ae.png" alt="Adobe After Effects" width="40" height="40"></div>
+                            <div class="icon"><img src="images/ps.png" alt="Adobe Photoshop" width="40" height="40">
+                            </div>
+                            <div class="icon"><img src="images/ai.png" alt="Adobe Illustrator" width="40" height="40">
+                            </div>
+                            <div class="icon"><img src="images/id.png" alt="Adobe InDesign" width="40" height="40">
+                            </div>
+                            <div class="icon"><img src="images/pr.png" alt="Adobe Premiere Pro" width="40" height="40">
+                            </div>
+                            <div class="icon"><img src="images/ae.png" alt="Adobe After Effects" width="40" height="40">
+                            </div>
                             <div class="icon"><img src="images/xd.png" alt="Adobe XD" width="40" height="40"></div>
                             <div class="icon"><img src="images/capcut.png" alt="CapCut" width="40" height="40"></div>
                             <div class="icon"><img src="images/figma.png" alt="Figma" width="40" height="40"></div>
@@ -731,12 +1667,12 @@
                     <h2>Experience</h2>
                     <div class="timeline">
                         <div class="experience-item">
-                            <h3>Web & Graphic Designer • MusafirMediaHub</h3>
+                            <h3>Production Head • MusafirMediaPublications</h3>
                             <p class="date">Sep 2024 - Present</p>
                             <p class="description-1">
-                                Design and develop visually appealing
-                                websites, user-friendly interfaces, and graphics for digital campaigns, hybrid,
-                                a diverse team using Scrum methodology to achieve objectives.
+                                Design and develop visually engaging <span class="highlight">websites and creative
+                                    assets</span>, while delivering <span class="highlight">video editing for
+                                    podcasts</span>, ensuring impactful storytelling and a strong digital presence.
                             </p>
                             <div class="tags">
                                 <span class="tag">HTML</span>
@@ -745,14 +1681,19 @@
                                 <span class="tag">Bootstrap</span>
                                 <span class="tag">Photoshop</span>
                                 <span class="tag">Illustrator</span>
+                                <span class="tag">Premiere Pro</span>
+                                <span class="tag">After Effects</span>
                             </div>
                         </div>
                         <div class="experience-item">
                             <h3>Graphic Designer Intern • ThePurpleBrick</h3>
                             <p class="date">May 2024 - July 2024</p>
                             <p class="description-1">
-                                Developing visually appealing graphics that align with the brand's identity, 100% WFH, a
-                                dynamic and creative team that values innovation and teamwork.
+                                Developing <span class="highlight">visually appealing graphics</span> that
+                                    align with the brand's identity, <span
+                                    class="highlight">100% WFH</span>, a dynamic and creative
+                                    team that values <span class="highlight">innovation and teamwork</span>.
+
                             </p>
                             <div class="tags">
                                 <span class="tag">Photoshop</span>
@@ -767,41 +1708,259 @@
             </div>
         </section>
 
-        <section id="projects" class="projects">
-            <h2 class="h2">My Projects</h2>
-            <div class="project-flex">
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Project 1">
-                    <div class="project-info">
-                        <h3>Project 1</h3>
-                        <p>Description of Project 1</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Project 2">
-                    <div class="project-info">
-                        <h3>Project 2</h3>
-                        <p>Description of Project 2</p>
-                    </div>
-                </div>
+        <!-- Revolutionary Client Showcase Section Without Overlap -->
+        <section class="clients-section">
+            <h2 class="clients-heading">Trusted By Industry Leaders</h2>
+            
+            <div class="floating-particles">
+                <div class="floating-particle particle-1"></div>
+                <div class="floating-particle particle-2"></div>
+                <div class="floating-particle particle-3"></div>
             </div>
-            <div class="project-flex">
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Project 3">
-                    <div class="project-info">
-                        <h3>Project 3</h3>
-                        <p>Description of Project 3</p>
+            
+            <div class="magnetic-grid" id="magneticGrid">
+                <!-- Grid cells with client orbs - positions are set by JavaScript to prevent overlap -->
+                <div class="grid-cell" data-client="musafir">
+                    <div class="client-orb">
+                        <img src="https://via.placeholder.com/100x50/ffffff/000000?text=Musafir" alt="Musafir Media" class="client-logo">
                     </div>
                 </div>
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Project 4">
-                    <div class="project-info">
-                        <h3>Project 4</h3>
-                        <p>Description of Project 4</p>
+                
+                <div class="grid-cell" data-client="purple">
+                    <div class="client-orb">
+                        <img src="https://via.placeholder.com/100x50/ffffff/000000?text=Purple+Brick" alt="The Purple Brick" class="client-logo">
                     </div>
                 </div>
+                
+                <div class="grid-cell" data-client="tech">
+                    <div class="client-orb">
+                        <img src="https://via.placeholder.com/100x50/ffffff/000000?text=Tech+Solutions" alt="Tech Solutions Inc" class="client-logo">
+                    </div>
+                </div>
+                
+                <div class="grid-cell" data-client="creative">
+                    <div class="client-orb">
+                        <img src="https://via.placeholder.com/100x50/ffffff/000000?text=Creative+Minds" alt="Creative Minds" class="client-logo">
+                    </div>
+                </div>
+                
+                <div class="grid-cell" data-client="digital">
+                    <div class="client-orb">
+                        <img src="https://via.placeholder.com/100x50/ffffff/000000?text=Digital+Innovations" alt="Digital Innovations" class="client-logo">
+                    </div>
+                </div>
+                
+                <div class="grid-cell" data-client="brand">
+                    <div class="client-orb">
+                        <img src="https://via.placeholder.com/100x50/ffffff/000000?text=Brand+Masters" alt="Brand Masters" class="client-logo">
+                    </div>
+                </div>
+                
+                <div class="grid-cell" data-client="visionary">
+                    <div class="client-orb">
+                        <img src="https://via.placeholder.com/100x50/ffffff/000000?text=Visionary+Studios" alt="Visionary Studios" class="client-logo">
+                    </div>
+                </div>
+                
+                <div class="grid-cell" data-client="nextgen">
+                    <div class="client-orb">
+                        <img src="https://via.placeholder.com/100x50/ffffff/000000?text=NextGen+Tech" alt="NextGen Tech" class="client-logo">
+                    </div>
+                </div>
+                
+                <!-- Connection lines -->
+                <div class="connection-line" id="line1"></div>
+                <div class="connection-line" id="line2"></div>
+                <div class="connection-line" id="line3"></div>
+                <div class="connection-line" id="line4"></div>
+                <div class="connection-line" id="line5"></div>
+                <div class="connection-line" id="line6"></div>
+                <div class="connection-line" id="line7"></div>
+                <div class="connection-line" id="line8"></div>
+            </div>
+            
+            <div class="client-info-panel" id="clientInfo">
+                <button class="close-info">&times;</button>
+                <div class="client-info-header">
+                    <img src="" alt="" class="client-info-logo" id="infoLogo">
+                    <h3 class="client-info-name" id="infoName">Client Name</h3>
+                </div>
+                <p class="client-info-project" id="infoProject">Project Type</p>
+                <p class="client-info-description" id="infoDescription">Description of the work done for this client.</p>
             </div>
         </section>
+
+        <section id="projects" class="projects">
+    <h2 class="h2">My Projects</h2>
+    <div class="project-flex">
+        <div class="project-card">
+            <div class="project-image-container">
+                <!-- SVG for UI/UX Design Project -->
+                <svg class="project-image" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#111111;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0.3" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="#111111" />
+                    <rect x="50" y="50" width="500" height="300" rx="10" fill="url(#grad1)" stroke="#00ffff" stroke-width="2" />
+                    <rect x="80" y="80" width="150" height="40" rx="5" fill="#00ffff" fill-opacity="0.2" stroke="#00ffff" stroke-width="1" />
+                    <rect x="250" y="80" width="150" height="40" rx="5" fill="#00ffff" fill-opacity="0.1" stroke="#00ffff" stroke-width="1" />
+                    <rect x="420" y="80" width="100" height="40" rx="5" fill="#00ffff" fill-opacity="0.1" stroke="#00ffff" stroke-width="1" />
+                    <rect x="80" y="150" width="440" height="180" rx="5" fill="#00ffff" fill-opacity="0.05" stroke="#00ffff" stroke-width="1" />
+                    <circle cx="100" cy="100" r="10" fill="#00ffff" fill-opacity="0.5" />
+                    <circle cx="130" cy="100" r="10" fill="#00ffff" fill-opacity="0.3" />
+                    <circle cx="160" cy="100" r="10" fill="#00ffff" fill-opacity="0.2" />
+                    <text x="300" y="40" text-anchor="middle" fill="#00ffff" font-family="Arial" font-size="24" font-weight="bold">UI/UX Design</text>
+                </svg>
+                <div class="project-overlay">
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Figma</span>
+                        <span class="tech-tag">Adobe XD</span>
+                        <span class="tech-tag">Illustrator</span>
+                        <span class="tech-tag">User Research</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3>UI/UX Designing</h3>
+                <p>Complete UI/UX design for the media company, focusing on improving conversion rates and user experience with intuitive navigation and modern aesthetics.</p>
+                <a href="https://www.musafirmediapublications.com/" class="project-link" target="_blank">
+                    View Project
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-image-container">
+                <!-- SVG for Video Editing Project -->
+                <svg class="project-image" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#111111;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0.3" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="#111111" />
+                    <rect x="100" y="80" width="400" height="240" rx="10" fill="url(#grad2)" stroke="#00ffff" stroke-width="2" />
+                    <polygon points="280,160 320,180 280,200" fill="#00ffff" fill-opacity="0.7" />
+                    <rect x="120" y="250" width="360" height="20" rx="5" fill="#00ffff" fill-opacity="0.2" />
+                    <rect x="120" y="280" width="320" height="20" rx="5" fill="#00ffff" fill-opacity="0.2" />
+                    <rect x="120" y="310" width="280" height="20" rx="5" fill="#00ffff" fill-opacity="0.2" />
+                    <circle cx="150" cy="110" r="15" fill="#00ffff" fill-opacity="0.5" />
+                    <circle cx="190" cy="110" r="15" fill="#00ffff" fill-opacity="0.3" />
+                    <circle cx="230" cy="110" r="15" fill="#00ffff" fill-opacity="0.2" />
+                    <text x="300" y="40" text-anchor="middle" fill="#00ffff" font-family="Arial" font-size="24" font-weight="bold">Video Editing</text>
+                </svg>
+                <div class="project-overlay">
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Premiere Pro</span>
+                        <span class="tech-tag">After Effects</span>
+                        <span class="tech-tag">Audition</span>
+                        <span class="tech-tag">Motion Graphics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3>Video Editing</h3>
+                <p>Dynamic editing with captivating visuals, use of 3d objects, smooth transitions, and a polished finish that keeps viewers engaged till the end.</p>
+                <a href="https://www.youtube.com/@TheMusafirPodcast-TMP" class="project-link" target="_blank">
+                    View Project
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-image-container">
+                <!-- SVG for Motion Graphics Project -->
+                <svg class="project-image" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#111111;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0.3" />
+                        </linearGradient>
+                        <path id="wavePath" d="M100,250 C200,200 300,300 400,250 C500,200 600,300 600,300 L600,400 L100,400 Z" fill="#00ffff" fill-opacity="0.1"/>
+                    </defs>
+                    <rect width="100%" height="100%" fill="#111111" />
+                    <rect x="100" y="80" width="400" height="240" rx="10" fill="url(#grad3)" stroke="#00ffff" stroke-width="2" />
+                    <circle cx="300" cy="200" r="50" fill="#00ffff" fill-opacity="0.3">
+                        <animate attributeName="r" values="50;60;50" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <rect x="250" y="175" width="100" height="50" rx="5" fill="#00ffff" fill-opacity="0.2">
+                        <animate attributeName="y" values="175;165;175" dur="2s" repeatCount="indefinite" />
+                    </rect>
+                    <use href="#wavePath">
+                        <animate attributeName="opacity" values="0.1;0.2;0.1" dur="4s" repeatCount="indefinite" />
+                    </use>
+                    <text x="300" y="40" text-anchor="middle" fill="#00ffff" font-family="Arial" font-size="24" font-weight="bold">Motion Graphics</text>
+                </svg>
+                <div class="project-overlay">
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Illustrator</span>
+                        <span class="tech-tag">Photoshop</span>
+                        <span class="tech-tag">After Effects</span>
+                        <span class="tech-tag">Animation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3>Motion Graphic Designing</h3>
+                <p>Eye-catching animations with engaging ideas, fluid motion, and creative visuals that make every story come alive.</p>
+                <a href="https://www.youtube.com/@bhujangy" class="project-link" target="_blank">
+                    View Project
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="project-image-container">
+                <!-- SVG for Graphic Design Project -->
+                <svg class="project-image" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#111111;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00ffff;stop-opacity:0.3" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="#111111" />
+                    <rect x="100" y="80" width="400" height="240" rx="10" fill="url(#grad4)" stroke="#00ffff" stroke-width="2" />
+                    <circle cx="200" cy="170" r="50" fill="#00ffff" fill-opacity="0.3" stroke="#00ffff" stroke-width="1" />
+                    <rect x="280" y="140" width="100" height="60" fill="#00ffff" fill-opacity="0.3" stroke="#00ffff" stroke-width="1" />
+                    <polygon points="400,140 450,170 400,200" fill="#00ffff" fill-opacity="0.3" stroke="#00ffff" stroke-width="1" />
+                    <line x1="150" y1="250" x2="450" y2="250" stroke="#00ffff" stroke-width="2" />
+                    <line x1="150" y1="280" x2="450" y2="280" stroke="#00ffff" stroke-width="2" />
+                    <text x="300" y="310" text-anchor="middle" fill="#00ffff" font-family="Arial" font-size="16">Graphic Design Elements</text>
+                    <text x="300" y="40" text-anchor="middle" fill="#00ffff" font-family="Arial" font-size="24" font-weight="bold">Graphic Designing</text>
+                </svg>
+                <div class="project-overlay">
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Photoshop</span>
+                        <span class="tech-tag">Illustrator</span>
+                        <span class="tech-tag">InDesign</span>
+                        <span class="tech-tag">Visual Identity</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3>Graphic Designing</h3>
+                <p>Creative and impactful designs with a strong visual identity and tailored graphics that bring brands to life across various media platforms.</p>
+                <a href="https://www.behance.net/portfolio/editor?project_id=179220979" class="project-link" target="_blank">
+                    View Project
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section id="contact">
             <div class="container-2">
@@ -834,6 +1993,16 @@
                         <p>&copy; <span id="currentYear"></span> Meharwan Singh. All rights reserved.</p>
                     </div>
                     <div class="social-linkss">
+                        <a href="https://www.behance.net/MeharwanSinghh" target="_blank" rel="noopener noreferrer"
+                            aria-label="Behance">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M3.54 11.47h3.8a3.14 3.14 0 1 0 0-6.29h-3.8zM3.54 12.54h3.87a3.49 3.49 0 1 1 0 6.97H3.54zM21 9.25h-5.68v1.5h5.68zM15.46 16.54a2.21 2.21 0 0 0 2.29 1.9c1.79 0 2.03-1.21 2.03-1.84H21c0 2.46-1.43 3.75-3.52 3.75s-3.48-1.45-3.48-3.49c0-2.04 1.46-3.49 3.52-3.49 1.57 0 3.48 1.06 3.48 3.24H17.6a2.05 2.05 0 0 0-2.14-1.92 2.11 2.11 0 0 0-2 1.84z">
+                                </path>
+                            </svg>
+                        </a>
                         <a href="https://www.linkedin.com/in/meharwan-singh-316388278/" target="_blank"
                             rel="noopener noreferrer" aria-label="linkedin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -844,16 +2013,6 @@
                                 </path>
                                 <rect x="2" y="9" width="4" height="12"></rect>
                                 <circle cx="4" cy="4" r="2"></circle>
-                            </svg>
-                        </a>
-                        <a href="https://www.behance.net/MeharwanSinghh" target="_blank" rel="noopener noreferrer"
-                            aria-label="Behance">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M3.54 11.47h3.8a3.14 3.14 0 1 0 0-6.29h-3.8zM3.54 12.54h3.87a3.49 3.49 0 1 1 0 6.97H3.54zM21 9.25h-5.68v1.5h5.68zM15.46 16.54a2.21 2.21 0 0 0 2.29 1.9c1.79 0 2.03-1.21 2.03-1.84H21c0 2.46-1.43 3.75-3.52 3.75s-3.48-1.45-3.48-3.49c0-2.04 1.46-3.49 3.52-3.49 1.57 0 3.48 1.06 3.48 3.24H17.6a2.05 2.05 0 0 0-2.14-1.92 2.11 2.11 0 0 0-2 1.84z">
-                                </path>
                             </svg>
                         </a>
                         <a href="mailto:meharwansinghhh@gmail.com" aria-label="Email">
@@ -869,8 +2028,12 @@
                 </div>
             </div>
         </footer>
+        <button class="back-to-top" id="backToTop">
+            ↑
+        </button>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         document.querySelector('.download-cv').addEventListener('click', function () {
             alert('Want to Download CV ?');
@@ -884,6 +2047,43 @@
                 scrollIndicator.style.opacity = '1';
             }
         });
+
+        // Particles.js initialization
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00ffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00ffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
 
         // Hover Skills & Tools
         const allIcons = document.querySelectorAll('.icon');
@@ -911,78 +2111,9 @@
             const form = document.getElementById('contactForm');
             const successMessage = document.getElementById('successMessage');
 
-            // Form submission and validation
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (validateForm()) {
-                    // Simulate form submission
-                    setTimeout(() => {
-                        form.reset();
-                        successMessage.classList.remove('hidden');
-                        setTimeout(() => {
-                            successMessage.classList.add('hidden');
-                        }, 3000);
-                    }, 1000);
-                }
-            });
+           
 
-            function validateForm() {
-                const name = document.getElementById('name');
-                const email = document.getElementById('email');
-                const message = document.getElementById('message');
-                let isValid = true;
-
-                if (name.value.trim() === '') {
-                    showError(name, 'Name is required');
-                    isValid = false;
-                } else {
-                    removeError(name);
-                }
-
-                if (email.value.trim() === '') {
-                    showError(email, 'Email is required');
-                    isValid = false;
-                } else if (!isValidEmail(email.value)) {
-                    showError(email, 'Please enter a valid email');
-                    isValid = false;
-                } else {
-                    removeError(email);
-                }
-
-                if (message.value.trim() === '') {
-                    showError(message, 'Message is required');
-                    isValid = false;
-                } else {
-                    removeError(message);
-                }
-
-                return isValid;
-            }
-
-            function showError(input, message) {
-                const formGroup = input.parentElement;
-                const error = formGroup.querySelector('.error-message') || document.createElement('div');
-                error.className = 'error-message';
-                error.textContent = message;
-                if (!formGroup.querySelector('.error-message')) {
-                    formGroup.appendChild(error);
-                }
-                input.classList.add('error');
-            }
-
-            function removeError(input) {
-                const formGroup = input.parentElement;
-                const error = formGroup.querySelector('.error-message');
-                if (error) {
-                    formGroup.removeChild(error);
-                }
-                input.classList.remove('error');
-            }
-
-            function isValidEmail(email) {
-                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<script>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(String(email).toLowerCase());
-            }
+            
 
             // Current Year
             document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -991,6 +2122,376 @@
 
 
     </script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+    (function(){
+        emailjs.init("UGrfC7oDE9C9uUj5X"); // 🔑 Replace with your EmailJS Public Key
+    })();
+
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    // Form submission and validation
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            emailjs.sendForm("service_mirtqqu", "template_czxidp3", form) // ✅ Service ID added
+                .then(() => {
+                    form.reset();
+                    successMessage.classList.remove('hidden');
+                    setTimeout(() => successMessage.classList.add('hidden'), 3000);
+                }, (error) => {
+                    alert("❌ Failed to send message. Please try again.");
+                    console.error("EmailJS Error:", error);
+                });
+        }
+    });
+
+    function validateForm() {
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+        let isValid = true;
+
+        if (name.value.trim() === '') {
+            showError(name, 'Name is required');
+            isValid = false;
+        } else {
+            removeError(name);
+        }
+
+        if (email.value.trim() === '') {
+            showError(email, 'Email is required');
+            isValid = false;
+        } else if (!isValidEmail(email.value)) {
+            showError(email, 'Please enter a valid email');
+            isValid = false;
+        } else {
+            removeError(email);
+        }
+
+        if (message.value.trim() === '') {
+            showError(message, 'Message is required');
+            isValid = false;
+        } else {
+            removeError(message);
+        }
+
+        return isValid;
+    }
+
+    function showError(input, message) {
+        const formGroup = input.parentElement;
+        const error = formGroup.querySelector('.error-message') || document.createElement('div');
+        error.className = 'error-message';
+        error.textContent = message;
+        if (!formGroup.querySelector('.error-message')) {
+            formGroup.appendChild(error);
+        }
+        input.classList.add('error');
+    }
+
+    function removeError(input) {
+        const formGroup = input.parentElement;
+        const error = formGroup.querySelector('.error-message');
+        if (error) {
+            formGroup.removeChild(error);
+        }
+        input.classList.remove('error');
+    }
+
+    function isValidEmail(email) {
+        const re = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+     // Client data
+        const clientData = {
+            musafir: {
+                name: "Musafir Media",
+                logo: "https://via.placeholder.com/100x50/ffffff/000000?text=Musafir",
+                project: "Website Design & Video Production",
+                description: "Designed and developed visually engaging websites and creative assets, while delivering video editing for podcasts, ensuring impactful storytelling and a strong digital presence."
+            },
+            purple: {
+                name: "The Purple Brick",
+                logo: "https://via.placeholder.com/100x50/ffffff/000000?text=Purple+Brick",
+                project: "Brand Identity & Graphics",
+                description: "Developed visually appealing graphics that align with the brand's identity in a 100% WFH environment with a dynamic and creative team that values innovation and teamwork."
+            },
+            tech: {
+                name: "Tech Solutions Inc",
+                logo: "https://via.placeholder.com/100x50/ffffff/000000?text=Tech+Solutions",
+                project: "UI/UX Design",
+                description: "Created intuitive user interfaces and experiences for enterprise software solutions, focusing on usability and aesthetic appeal."
+            },
+            creative: {
+                name: "Creative Minds",
+                logo: "https://via.placeholder.com/100x50/ffffff/000000?text=Creative+Minds",
+                project: "Motion Graphics",
+                description: "Produced engaging motion graphics and animations for marketing campaigns and social media content."
+            },
+            digital: {
+                name: "Digital Innovations",
+                logo: "https://via.placeholder.com/100x50/ffffff/000000?text=Digital+Innovations",
+                project: "Web App Design",
+                description: "Designed sleek and functional interfaces for cutting-edge web applications with a focus on user experience."
+            },
+            brand: {
+                name: "Brand Masters",
+                logo: "https://via.placeholder.com/100x50/ffffff/000000?text=Brand+Masters",
+                project: "Logo & Branding",
+                description: "Developed comprehensive brand identities including logos, color schemes, and marketing materials."
+            },
+            visionary: {
+                name: "Visionary Studios",
+                logo: "https://via.placeholder.com/100x50/ffffff/000000?text=Visionary+Studios",
+                project: "Video Editing",
+                description: "Provided professional video editing services for commercial and creative projects."
+            },
+            nextgen: {
+                name: "NextGen Tech",
+                logo: "https://via.placeholder.com/100x50/ffffff/000000?text=NextGen+Tech",
+                project: "Dashboard Design",
+                description: "Created analytics dashboards with data visualization components and user-friendly interfaces."
+            }
+        };
+
+        // Initialize client showcase
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridCells = document.querySelectorAll('.grid-cell');
+            const magneticGrid = document.getElementById('magneticGrid');
+            const infoPanel = document.getElementById('clientInfo');
+            const infoLogo = document.getElementById('infoLogo');
+            const infoName = document.getElementById('infoName');
+            const infoProject = document.getElementById('infoProject');
+            const infoDescription = document.getElementById('infoDescription');
+            const closeButton = document.querySelector('.close-info');
+            
+            // Position grid cells in a non-overlapping layout
+            positionGridCells(gridCells, magneticGrid);
+            
+            // Draw connection lines between cells
+            drawConnectionLines(gridCells);
+            
+            // Add click event to each client orb
+            gridCells.forEach(cell => {
+                cell.addEventListener('click', function() {
+                    const clientId = this.getAttribute('data-client');
+                    const client = clientData[clientId];
+                    
+                    // Update info panel
+                    infoLogo.src = client.logo;
+                    infoLogo.alt = client.name;
+                    infoName.textContent = client.name;
+                    infoProject.textContent = client.project;
+                    infoDescription.textContent = client.description;
+                    
+                    // Show info panel
+                    infoPanel.classList.add('active');
+                });
+            });
+            
+            // Close info panel
+            closeButton.addEventListener('click', function() {
+                infoPanel.classList.remove('active');
+            });
+            
+            // Close panel when clicking outside
+            document.addEventListener('click', function(event) {
+                if (infoPanel.classList.contains('active') && 
+                    !event.target.closest('.grid-cell') && 
+                    !event.target.closest('.client-info-panel')) {
+                    infoPanel.classList.remove('active');
+                }
+            });
+            
+            // Reposition on window resize
+            window.addEventListener('resize', function() {
+                positionGridCells(gridCells, magneticGrid);
+                drawConnectionLines(gridCells);
+            });
+        });
+
+        // Function to position grid cells without overlap
+        function positionGridCells(cells, container) {
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+            const cellSize = 140;
+            const padding = 20;
+            
+            // Define positions in a grid-like pattern that fits the container
+            const positions = [
+                // Top row
+                { left: '10%', top: '15%' },
+                { left: '30%', top: '10%' },
+                { left: '50%', top: '15%' },
+                { left: '70%', top: '10%' },
+                
+                // Middle row
+                { left: '20%', top: '45%' },
+                { left: '40%', top: '50%' },
+                { left: '60%', top: '45%' },
+                { left: '80%', top: '50%' },
+                
+                // Bottom row
+                { left: '10%', top: '75%' },
+                { left: '30%', top: '80%' },
+                { left: '50%', top: '75%' },
+                { left: '70%', top: '80%' }
+            ];
+            
+            // Apply positions to cells
+            cells.forEach((cell, index) => {
+                if (index < positions.length) {
+                    cell.style.left = positions[index].left;
+                    cell.style.top = positions[index].top;
+                }
+            });
+        }
+
+        // Function to draw connection lines between cells
+        function drawConnectionLines(cells) {
+            // Clear existing lines
+            document.querySelectorAll('.connection-line').forEach(line => {
+                line.style.width = '0';
+            });
+            
+            // Draw lines between specific cells
+            if (cells.length >= 2) {
+                drawLineBetweenCells(cells[0], cells[1], 'line1');
+                drawLineBetweenCells(cells[1], cells[2], 'line2');
+                drawLineBetweenCells(cells[2], cells[3], 'line3');
+                drawLineBetweenCells(cells[3], cells[4], 'line4');
+                drawLineBetweenCells(cells[4], cells[5], 'line5');
+                drawLineBetweenCells(cells[5], cells[6], 'line6');
+                drawLineBetweenCells(cells[6], cells[7], 'line7');
+                drawLineBetweenCells(cells[7], cells[8], 'line8');
+            }
+        }
+
+        // Function to draw a line between two cells
+        function drawLineBetweenCells(cell1, cell2, lineId) {
+            const line = document.getElementById(lineId);
+            if (!line || !cell1 || !cell2) return;
+            
+            const rect1 = cell1.getBoundingClientRect();
+            const rect2 = cell2.getBoundingClientRect();
+            
+            const containerRect = document.getElementById('magneticGrid').getBoundingClientRect();
+            
+            const x1 = rect1.left + rect1.width/2 - containerRect.left;
+            const y1 = rect1.top + rect1.height/2 - containerRect.top;
+            const x2 = rect2.left + rect2.width/2 - containerRect.left;
+            const y2 = rect2.top + rect2.height/2 - containerRect.top;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            line.style.width = `${length}px`;
+            line.style.left = `${x1}px`;
+            line.style.top = `${y1}px`;
+            line.style.transform = `rotate(${angle}deg)`;
+        }
+
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+
+        // Enhanced project image animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('.project-card');
+            const projectImages = document.querySelectorAll('.project-image');
+            
+            // Add parallax effect to project images
+            projectCards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const cardRect = this.getBoundingClientRect();
+                    const x = e.clientX - cardRect.left;
+                    const y = e.clientY - cardRect.top;
+                    
+                    const centerX = cardRect.width / 2;
+                    const centerY = cardRect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 25;
+                    const rotateY = (centerX - x) / 25;
+                    
+                    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.02)`;
+                    
+                    const image = this.querySelector('.project-image');
+                    const moveX = (x - centerX) / 20;
+                    const moveY = (y - centerY) / 20;
+                    
+                    image.style.transform = `scale(1.15) translate(${moveX}px, ${moveY}px)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    const image = this.querySelector('.project-image');
+                    image.style.transform = 'scale(1)';
+                    
+                    // Reset with smooth transition
+                    setTimeout(() => {
+                        this.style.transition = 'transform 0.5s ease';
+                        image.style.transition = 'transform 0.8s ease';
+                        
+                        setTimeout(() => {
+                            this.style.transition = '';
+                            image.style.transition = '';
+                        }, 500);
+                    }, 10);
+                });
+            });
+            
+            // Lazy loading for project images with fade-in effect
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.style.animation = 'fadeIn 1s forwards';
+                            img.style.background = 'none'; // Remove loading animation
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                projectImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+            
+            // Preload images for smoother animation
+            function preloadImages() {
+                projectImages.forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (src) {
+                        const newImg = new Image();
+                        newImg.src = src;
+                    }
+                });
+            }
+            
+            // Start preloading after page load
+            window.addEventListener('load', preloadImages);
+        });
+</script>
+
     <script src="https://kit.fontawesome.com/0d2c430efa.js" crossorigin="anonymous"></script>
 </body>
 
