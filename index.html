@@ -1261,18 +1261,22 @@
             });
         });
 
-        // Tooltip functionality
+        // Exact Tooltip JavaScript from your original code
         const allIcons = document.querySelectorAll('.icon');
         allIcons.forEach(icon => {
             icon.addEventListener('mouseenter', (e) => {
                 const tooltip = document.createElement('div');
                 tooltip.className = 'tooltip';
                 tooltip.textContent = e.target.querySelector('img').alt;
-                icon.appendChild(tooltip);
+                document.body.appendChild(tooltip);
+
+                const rect = e.target.getBoundingClientRect();
+                tooltip.style.left = `${rect.left + window.scrollX + rect.width / 2 - tooltip.offsetWidth / 2}px`;
+                tooltip.style.top = `${rect.top + window.scrollY - tooltip.offsetHeight - 10}px`;
             });
 
             icon.addEventListener('mouseleave', () => {
-                const tooltip = icon.querySelector('.tooltip');
+                const tooltip = document.querySelector('.tooltip');
                 if (tooltip) {
                     tooltip.remove();
                 }
@@ -1413,3 +1417,4 @@
     </script>
 </body>
 </html>
+
