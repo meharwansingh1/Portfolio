@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meharwan Singh | Full-Stack Designer</title>
     <link rel="icon" type="image/ms-icon" href="images/msfav.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-color: #111;
@@ -33,17 +35,6 @@
             align-items: center;
             overflow-x: hidden;
             line-height: 1.6;
-        }
-
-        /* Simplified particles background */
-        .particles-bg {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
         }
 
         .container {
@@ -231,6 +222,7 @@
             0% {
                 top: -20px;
             }
+
             100% {
                 top: 100%;
             }
@@ -369,6 +361,11 @@
             padding-left: 2rem;
         }
 
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
         .timeline::before {
             content: '';
             position: absolute;
@@ -397,13 +394,14 @@
         .experience-item::before {
             content: '';
             position: absolute;
-            left: -2.45rem;
-            top: 0;
+            left: -2rem;
+            top: 1.5rem;
             width: 1rem;
             height: 1rem;
             background: var(--gradient);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--accent-color);
+            transform: translateX(-50%);
         }
 
         .date {
@@ -448,6 +446,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -470,6 +469,102 @@
 
         .experience-item:nth-child(2) {
             animation-delay: 0.4s;
+        }
+
+        /* Simplified Client Showcase */
+        .clients-section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clients-heading {
+            text-align: center;
+            margin-bottom: 80px;
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+
+        .clients-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Mobile devices - 2 clients per row */
+        @media (max-width: 768px) {
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 0 15px;
+            }
+        }
+
+        /* Very small screens - 1 client per row */
+        @media (max-width: 480px) {
+            .clients-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .client-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .client-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .client-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .client-name {
+            text-align: center;
+            font-weight: 600;
         }
 
         .projects {
@@ -821,85 +916,6 @@
             }
         }
 
-        /* Simplified Client Showcase */
-        .clients-section {
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .clients-heading {
-            text-align: center;
-            margin-bottom: 80px;
-            font-size: 3rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.3s;
-        }
-
-        .clients-heading::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .client-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .client-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .client-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        .client-name {
-            text-align: center;
-            font-weight: 600;
-        }
-
         /* Back to top button */
         .back-to-top {
             position: fixed;
@@ -947,7 +963,7 @@
 <body>
     <!-- Simplified background -->
     <div class="particles-bg"></div>
-    
+
     <div class="container">
         <header>
             <div class="logo">MS</div>
@@ -1139,7 +1155,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Motion Graphic Designing</h3>
-                        <p>Eye-catching animations with engaging ideas, fluid motion, creative visuals, 3D objects, and captivating shorts that make every story come alive.</p>
+                        <p>Eye-catching animations with engaging ideas, fluid motion, creative visuals, 3D objects, and
+                            captivating shorts that make every story come alive.</p>
                         <a href="https://www.instagram.com/gianibirbalsinghji?" class="project-link" target="_blank">
                             View Project
                             <i class="fas fa-arrow-right"></i>
@@ -1307,7 +1324,7 @@
 
         // Add click events to client items
         document.querySelectorAll('.client-item').forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function () {
                 const clientId = this.getAttribute('data-client');
                 const client = clientData[clientId];
                 if (client && client.url) {
@@ -1410,8 +1427,5 @@
         }
     </script>
 </body>
+
 </html>
-
-
-
-
